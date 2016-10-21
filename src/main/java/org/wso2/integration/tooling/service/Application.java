@@ -25,7 +25,7 @@ import org.wso2.msf4j.MicroservicesRunner;
  */
 public class Application {
     public static void main(String[] args) {
-        new MicroservicesRunner(Integer.getInteger("http.port", 8081))
+        new MicroservicesRunner(Integer.getInteger("http.port", 8285))
                 .deploy(new UtilityService())
                 .start();
     }
