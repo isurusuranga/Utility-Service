@@ -60,9 +60,15 @@ public class UtilityService {
         byte[] base64Location = Base64.getDecoder().decode(location);
         try {
             Files.write(Paths.get((new String(base64Location))), base64Config);
+            return Response.status(Response.Status.OK)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity("Success").type(MediaType.TEXT_PLAIN).build();
         } catch (IOException e) {
             e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.toString()).type(MediaType.TEXT_PLAIN).build();
         }
-        return Response.status(Response.Status.OK).entity("Success").type(MediaType.TEXT_PLAIN).build();
+
     }
 }
